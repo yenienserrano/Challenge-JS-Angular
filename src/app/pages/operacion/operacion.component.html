@@ -1,0 +1,184 @@
+<div class="container p-md-5">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center m-3" data-toggle="modal" data-target="#saveOperation">
+      <button class="btn btn-success">Nueva operacion</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-12">
+      <h1>Dinero egresado</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Concepto</th>
+            <th scope="col">Monto</th>
+            <th scope="col" class="d-none d-md-table-cell"></th>
+            <th scope="col" class="d-none d-md-table-cell"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let eg of egreso  | slice:0:10; let i=index">
+          <tr>
+            <td>{{eg.tipo}}</td>
+            <td>{{eg.fecha}}</td>
+            <td>{{eg.concepto}}</td>
+            <td>${{eg.monto}}</td>
+            <td class="btnWidth d-none d-md-table-cell">
+              <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(eg._id)">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+            <td class="btnWidth d-none d-md-table-cell">
+              <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(eg._id)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <td class="d-table-cell d-md-none">
+            <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(eg._id)">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+          <td class="d-table-cell d-md-none">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(eg._id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-10 col-12">
+      <h1>Dinero ingresado</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Concepto</th>
+            <th scope="col">Monto</th>
+            <th scope="col" class="d-none d-md-table-cell"></th>
+            <th scope="col" class="d-none d-md-table-cell"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let ing of ingreso  | slice:0:10; let i=index">
+          <tr>
+            <td>{{ing.tipo}}</td>
+            <td>{{ing.fecha}}</td>
+            <td>{{ing.concepto}}</td>
+
+            <td>{{ing.monto}}</td>
+            <td class="btnWidth d-none d-md-table-cell">
+              <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(ing._id)">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+            <td class="btnWidth d-none d-md-table-cell">
+              <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(ing._id)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <td class="d-table-cell d-md-none">
+            <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(ing._id)">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+          <td class="d-table-cell d-md-none">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(ing._id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Modal Save -->
+<div class="modal fade" id="editOperation" tabindex="-1" aria-labelledby="tituloEditOperation" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloEditOperation">Editar operacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label for="concepto">Concepto</label>
+          <input type="text" name="concepto" class="form-control" [(ngModel)]="datosEditados.concepto">
+          <label for="monto">Monto</label>
+          <input type="number" name="monto" class="form-control" [(ngModel)]="datosEditados.monto">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="editOperation(idEditar)">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal delete -->
+
+<div class="modal fade" id="deleteOperation" tabindex="-1" aria-labelledby="tituloDeleteOperation" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloDeleteOperation">Eliminar operacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estas seguro que quieres eliminar esta operacion? No vas a poder recuperarla.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteOperation(idEditar)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal save -->
+
+
+<div class="modal fade" id="saveOperation" tabindex="-1" aria-labelledby="tituloSaveOperation" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloSaveOperation">Nueva operacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <form (submit)="saveOperations()">
+
+                <label for="tipo">Tipo de operacion:</label>
+                <select id="tipo" name="tipo" [(ngModel)]="datos.tipo" class="form-control">
+                  <option value="Ingreso">Ingreso</option>
+                  <option value="Egreso">Egreso</option>
+                </select>
+                <label for="concepto">Concepto:</label>
+                <input type="text" name="concepto" [(ngModel)]="datos.concepto" class="form-control">
+                <label for="concepto">Monto:</label>
+                <input type="number" name="monto" [(ngModel)]="datos.monto" class="form-control">
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="saveOperations()">Guardar operacion</button>
+      </div>
+    </div>
+  </div>
+</div>

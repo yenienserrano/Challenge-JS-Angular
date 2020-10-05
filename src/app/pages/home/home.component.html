@@ -1,0 +1,84 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <div>
+        <h1 class="border border-success rounded p-3">Balance general: ${{sumaIngreso - sumaEgreso}} </h1>
+        <div class="border border-info rounded p-3">
+          <h3>Balance de ingresos: ${{sumaIngreso}} </h3>
+          <h3>Balance de egresos: ${{sumaEgreso}} </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h1 class="m-4">Ultimos movimientos</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Concepto</th>
+            <th scope="col">Monto</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let op of operations  | slice:0:10; let i=index">
+          <tr>
+            <td>{{op.tipo}}</td>
+            <td>{{op.fecha}}</td>
+            <td>{{op.concepto}}</td>
+            <td>${{op.monto}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Save -->
+<div class="modal fade" id="editOperation" tabindex="-1" aria-labelledby="tituloEditOperation" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloEditOperation">Editar operacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label for="concepto"></label>
+          <input type="text" name="concepto" [(ngModel)]="datosEditados.concepto">
+          <label for="monto"></label>
+          <input type="number" name="monto" [(ngModel)]="datosEditados.monto">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="editOperation(idEditar)">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal delete -->
+
+<div class="modal fade" id="deleteOperation" tabindex="-1" aria-labelledby="tituloDeleteOperation" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloDeleteOperation">Eliminar operacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estas seguro que quieres eliminar esta operacion? No vas a poder recuperarla</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="deleteOperation(idEditar)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
