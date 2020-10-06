@@ -1,3 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+.colorRed{
+    color:red;
+    font-weight: bold;
+}
+
+.colorGreen{
+    color:#009f44;
+    font-weight: bold;
+}
+.table {
+    border-collapse: initial;
+    border-spacing: 0;
+    td, th {    
+    border-top: none !important;
+    border-bottom: none !important;
+}}
+
+
+.btnNewOperation{
+    border: none;
+    background: #1745D5;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.btnNewOperation:hover{
+    color: #fff;
+    background: #17a5d5;
+}
+
+.btnEdit{
+    color: #009f44;
+}
+
+.btnEdit:hover{
+    color: #00cf44
+}
+
+.btnDelete{
+    color: #ff0000;
+
+}
+
 .btnWidth{
     width:10%
 }
@@ -7,9 +53,17 @@
 }
 
 .fonts{
-    font-family: OpenSans;
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: normal;
     color:#2C2E30;
     background: #fff;
+}
+
+.bgPar{
+    background: #F2F7FD;
+}
+
+.bgimpar{
+    background:#fff;
 }

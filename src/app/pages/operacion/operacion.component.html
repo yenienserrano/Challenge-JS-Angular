@@ -1,13 +1,13 @@
-<div class="container p-md-5">
+<div class="container p-md-5">  
   <div class="row">
-    <div class="col-12 d-flex justify-content-center m-3" data-toggle="modal" data-target="#saveOperation">
-      <button class="btn btn-success">Nueva operacion</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 col-12">
-      <h1>Dinero egresado</h1>
-      <table class="table table-striped">
+    <div class="col-12">
+      <div class="d-flex justify-content-between py-3">
+        <h3>Egresos</h3>
+        <div data-toggle="modal" data-target="#saveOperation">
+          <button class="btn btnNewOperation"><i class="fa fa-plus"></i> Nueva operacion</button>
+        </div>
+      </div>      
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">Tipo</th>
@@ -18,41 +18,41 @@
             <th scope="col" class="d-none d-md-table-cell"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let eg of egreso  | slice:0:10; let i=index">
-          <tr>
-            <td>{{eg.tipo}}</td>
-            <td>{{eg.fecha}}</td>
-            <td>{{eg.concepto}}</td>
-            <td>${{eg.monto}}</td>
+        <tbody *ngFor="let eg of egreso  | slice:0:10; let i=index; let impar = odd;let par = even" [ngClass]="{bgPar:par,bgimpar:impar}">
+          <tr lass="align-text-center">
+            <td class="p-4">{{eg.tipo}}</td>
+            <td class="p-4">{{eg.fecha}}</td>
+            <td class="p-4">{{eg.concepto}}</td>
+            <td class="colorRed p-4">${{eg.monto}}</td>
             <td class="btnWidth d-none d-md-table-cell">
-              <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(eg._id)">
-                <i class="fa fa-edit"></i>
+              <button class="btn btnEdit" data-toggle="modal" data-target="#editOperation" (click)="getId(eg._id)">
+                <i class="fa fa-edit fa-2x" ></i>
               </button>
             </td>
             <td class="btnWidth d-none d-md-table-cell">
-              <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(eg._id)">
-                <i class="fa fa-trash"></i>
+              <button class="btn btnDelete" data-toggle="modal" data-target="#deleteOperation" (click)="getId(eg._id)">
+                <i class="fa fa-trash fa-2x"></i>
               </button>
             </td>
           </tr>
           <td class="d-table-cell d-md-none">
-            <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(eg._id)">
-              <i class="fa fa-edit"></i>
+            <button class="btn btnEdit" data-toggle="modal" data-target="#editOperation" (click)="getId(eg._id)">
+              <i class="fa fa-edit fa-2x"></i>
             </button>
           </td>
           <td class="d-table-cell d-md-none">
-            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(eg._id)">
-              <i class="fa fa-trash"></i>
+            <button class="btn btnDelete" data-toggle="modal" data-target="#deleteOperation" (click)="getId(eg._id)">
+              <i class="fa fa-trash fa-2x" size="3x"></i>
             </button>
           </td>
         </tbody>
       </table>
     </div>
-    <div class="col-md-10 col-12">
-      <h1>Dinero ingresado</h1>
-      <table class="table table-striped">
+    <div class="col-12">
+      <h3>Ingresos</h3>
+      <table class="table">
         <thead>
-          <tr>
+          <tr class="borderNone">
             <th scope="col">Tipo</th>
             <th scope="col">Fecha</th>
             <th scope="col">Concepto</th>
@@ -61,32 +61,31 @@
             <th scope="col" class="d-none d-md-table-cell"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let ing of ingreso  | slice:0:10; let i=index">
+        <tbody *ngFor="let ing of ingreso  | slice:0:10; let i=index; let impar = odd;let par = even" [ngClass]="{bgPar:par,bgimpar:impar}">
           <tr>
-            <td>{{ing.tipo}}</td>
-            <td>{{ing.fecha}}</td>
-            <td>{{ing.concepto}}</td>
-
-            <td>{{ing.monto}}</td>
+            <td class="p-4">{{ing.tipo}}</td>
+            <td class="p-4">{{ing.fecha}}</td>
+            <td class="p-4">{{ing.concepto}}</td>
+            <td class="p-4 colorGreen">${{ing.monto}}</td>
             <td class="btnWidth d-none d-md-table-cell">
-              <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(ing._id)">
-                <i class="fa fa-edit"></i>
+              <button class="btn btnEdit" data-toggle="modal" data-target="#editOperation" (click)="getId(ing._id)">
+                <i class="fa fa-edit fa-2x"></i>
               </button>
             </td>
             <td class="btnWidth d-none d-md-table-cell">
-              <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(ing._id)">
-                <i class="fa fa-trash"></i>
+              <button class="btn btnDelete" data-toggle="modal" data-target="#deleteOperation" (click)="getId(ing._id)">
+                <i class="fa fa-trash fa-2x"></i>
               </button>
             </td>
           </tr>
           <td class="d-table-cell d-md-none">
-            <button class="btn btn-success" data-toggle="modal" data-target="#editOperation" (click)="getId(ing._id)">
-              <i class="fa fa-edit"></i>
+            <button class="btn btnEdit" data-toggle="modal" data-target="#editOperation" (click)="getId(ing._id)">
+              <i class="fa fa-edit fa-2x"></i>
             </button>
           </td>
           <td class="d-table-cell d-md-none">
-            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteOperation" (click)="getId(ing._id)">
-              <i class="fa fa-trash"></i>
+            <button class="btn btnDelete" data-toggle="modal" data-target="#deleteOperation" (click)="getId(ing._id)">
+              <i class="fa fa-trash fa-2x"></i>
             </button>
           </td>
         </tbody>
@@ -114,7 +113,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="editOperation(idEditar)">Guardar cambios</button>
+        <button type="button" class="btn btn-success" (click)="editOperation(idEditar)">Guardar cambios</button>
       </div>
     </div>
   </div>
@@ -136,7 +135,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="deleteOperation(idEditar)">Eliminar</button>
+        <button type="button" class="btn btn-danger" (click)="deleteOperation(idEditar)">Eliminar</button>
       </div>
     </div>
   </div>
@@ -177,7 +176,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="saveOperations()">Guardar operacion</button>
+        <button type="button" class="btn btn-success" (click)="saveOperations()">Guardar operacion</button>
       </div>
     </div>
   </div>

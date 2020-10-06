@@ -6,11 +6,10 @@ import { OperationService } from 'src/app/service/operation.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [ OperationService ]
+  providers: [OperationService]
 })
 export class HomeComponent implements OnInit {
 
-  
   operations: any = []
   devIngreso
   sumaIngreso
@@ -18,29 +17,27 @@ export class HomeComponent implements OnInit {
   sumaEgreso
   idEditar
   datosEditados = {
-    concepto:"Varios",
-    monto:"0"
-  }  
+    concepto: "Varios",
+    monto: "0"
+  }
 
   constructor(
     private operationService: OperationService,
     private router: Router
-  ) {
-   }
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getOperations()
     this.getIngreso()
     this.getEgreso()
   }
 
-
-  getId(id){
+  getId(id) {
     this.idEditar = id
     console.log(this.idEditar)
   }
 
-  getOperations(){
+  getOperations() {
     this.operationService.getOperations().subscribe(
       res => {
         this.operations = res
@@ -50,8 +47,8 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  
-  getIngreso(){
+
+  getIngreso() {
     this.operationService.getIngreso().subscribe(
       res => {
         this.devIngreso = res
@@ -63,7 +60,7 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  getEgreso(){
+  getEgreso() {
     this.operationService.getEgreso().subscribe(
       res => {
         this.devEgreso = res
@@ -75,7 +72,7 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  editOperation(id){
+  editOperation(id) {
     this.operationService.editOperation(this.idEditar, this.datosEditados).subscribe(
       res => {
         console.log('Los datos fueron editados')
@@ -85,7 +82,7 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  deleteOperation(id){
+  deleteOperation(id) {
     this.operationService.deleteOperation(id).subscribe(
       res => {
         console.log('Los datos fueron eliminados')

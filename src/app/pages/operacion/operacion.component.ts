@@ -5,13 +5,12 @@ import { OperationService } from 'src/app/service/operation.service';
 @Component({
   selector: 'app-operacion',
   templateUrl: './operacion.component.html',
-  providers: [ OperationService ]
+  providers: [OperationService]
 })
 export class OperacionComponent implements OnInit {
 
-  verGuardar:boolean = false
   operations
-  devEgreso  
+  devEgreso
   egreso
   sumaEgreso
   devIngreso
@@ -20,12 +19,12 @@ export class OperacionComponent implements OnInit {
   idEditar
   datos = {
     monto: 0,
-    tipo:"",
-    concepto:"Varios"
+    tipo: "",
+    concepto: "Varios"
   }
   datosEditados = {
-    concepto:"Varios",
-    monto:"0"
+    concepto: "Varios",
+    monto: "0"
   }
 
   constructor(private operationService: OperationService) { }
@@ -36,31 +35,23 @@ export class OperacionComponent implements OnInit {
     this.getIngreso()
   }
 
-  getId(id){
+  getId(id) {
     this.idEditar = id
     console.log(this.idEditar)
-  }
+  }  
 
-  verGuardarTrue(){
-    this.verGuardar = true
-  }
-
-  verGuardarFalse(){
-    this.verGuardar = false
-  }
-
-  saveOperations(){
+  saveOperations() {
     this.operationService.saveOperations(this.datos).subscribe(
       res => {
         console.log(res)
         location.reload();
-    }
+      }
 
     ),
-    err => console.log(err)
+      err => console.log(err)
   }
 
-  getOperations(){
+  getOperations() {
     this.operationService.getOperations().subscribe(
       res => {
         this.operations = res
@@ -69,9 +60,9 @@ export class OperacionComponent implements OnInit {
         console.error(err)
       }
     )
-  }  
+  }
 
-  getEgreso(){
+  getEgreso() {
     this.operationService.getEgreso().subscribe(
       res => {
         this.devEgreso = res
@@ -84,7 +75,7 @@ export class OperacionComponent implements OnInit {
     )
   }
 
-  getIngreso(){
+  getIngreso() {
     this.operationService.getIngreso().subscribe(
       res => {
         this.devIngreso = res
@@ -97,7 +88,7 @@ export class OperacionComponent implements OnInit {
     )
   }
 
-  editOperation(id){
+  editOperation(id) {
     this.operationService.editOperation(id, this.datosEditados).subscribe(
       res => {
         console.log('Los datos fueron editados')
@@ -107,7 +98,7 @@ export class OperacionComponent implements OnInit {
     )
   }
 
-  deleteOperation(id){
+  deleteOperation(id) {
     this.operationService.deleteOperation(id).subscribe(
       res => {
         console.log('Los datos fueron eliminados')
@@ -116,6 +107,4 @@ export class OperacionComponent implements OnInit {
       err => console.error(err)
     )
   }
-
-  
 }
